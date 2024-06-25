@@ -1,0 +1,106 @@
+body{
+    margin:0;
+    padding: 0;
+    font-family: "Playwrite NG Modern", cursive;;
+    background: rgb(2,0,34);
+background: linear-gradient(90deg, rgba(2,0,34,1) 6%, rgba(51,1,17,1) 22%, rgba(71,22,22,1) 41%, rgba(144,31,31,1) 54%, rgba(92,20,20,1) 69%, rgba(17,19,73,1) 81%, rgba(0,9,37,1) 96%);
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 400 */
+
+.playwrite-ng-modern-googlefont {
+  font-family: "Playwrite NG Modern", cursive;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+/* header Section */
+
+.container{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(131, 33, 33);
+    border-bottom: 10px solid rgb(95, 24, 24);
+    
+}
+.logo-container{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin-left: 2rem;
+}
+.logo-container img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.logo-name{
+    margin-left: 1rem;
+    font-size: 20px;
+    font-weight:bolder ;
+    color: aliceblue;
+}
+.logo-image{
+    width: 10px;
+    height: 10px;
+}
+
+.fav-tag{
+    margin-right: 1rem;
+    color: white;
+    
+}
+.fav-tag a{
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: 500;
+}
+
+.fa-regular{
+    color: white;
+
+}
+.image-container{
+    margin-top: 20px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+.banner{
+    text-align: center;
+    color: white;
+    font-family: "Playwrite NZ", cursive;
+}
+.banner-image{
+    width: 15rem;
+    height: 15rem;
+}
+
+.movies-container{
+   
+    text-align: center;
+}
+
+.movies-container input[type=text] {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #d40f51;
+	background: transparent;
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #E91E63;
+    /* color: aliceblue; */
+    width: 60%;
+    font-size: 20px;
+}
+
