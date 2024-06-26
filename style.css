@@ -1,106 +1,293 @@
-body{
-    margin:0;
+body {
+    margin: 0;
     padding: 0;
-    font-family: "Playwrite NG Modern", cursive;;
-    background: rgb(2,0,34);
-background: linear-gradient(90deg, rgba(2,0,34,1) 6%, rgba(51,1,17,1) 22%, rgba(71,22,22,1) 41%, rgba(144,31,31,1) 54%, rgba(92,20,20,1) 69%, rgba(17,19,73,1) 81%, rgba(0,9,37,1) 96%);
+    font-family: "Playwrite NG Modern", cursive;
+    ;
+    background: rgb(2, 0, 34);
+    background: linear-gradient(90deg, rgba(2, 0, 34, 1) 6%, rgba(51, 1, 17, 1) 22%, rgba(71, 22, 22, 1) 41%, rgba(144, 31, 31, 1) 54%, rgba(92, 20, 20, 1) 69%, rgba(17, 19, 73, 1) 81%, rgba(0, 9, 37, 1) 96%);
 }
-body::-webkit-scrollbar{
+
+body::-webkit-scrollbar {
     display: none;
 }
+
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 400 */
 
 .playwrite-ng-modern-googlefont {
-  font-family: "Playwrite NG Modern", cursive;
-  font-optical-sizing: auto;
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Playwrite NG Modern", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
 }
+
 /* header Section */
 
-.container{
+.container {
     width: 100%;
     margin: 0 auto;
     padding: 0;
 }
 
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     background-color: rgb(131, 33, 33);
     border-bottom: 10px solid rgb(95, 24, 24);
-    
+    margin-bottom: 20px;
+
 }
-.logo-container{
+
+.logo-container {
     display: flex;
     align-items: center;
     width: 70%;
     margin-left: 2rem;
 }
-.logo-container img{
+
+.logo-container img {
     width: 50px;
     height: 50px;
     border-radius: 50%;
 }
-.logo-name{
+
+.logo-name {
     margin-left: 1rem;
     font-size: 20px;
-    font-weight:bolder ;
+    font-weight: bolder;
     color: aliceblue;
 }
-.logo-image{
+
+.logo-image {
     width: 10px;
     height: 10px;
 }
 
-.fav-tag{
+.fav-tag {
     margin-right: 1rem;
     color: white;
-    
+
 }
-.fav-tag a{
+
+.fav-tag a {
     text-decoration: none;
     color: aliceblue;
     font-weight: 500;
 }
 
-.fa-regular{
+.fa-regular {
     color: white;
 
 }
-.image-container{
+
+.image-container {
     margin-top: 20px;
     width: 100%;
     align-items: center;
     text-align: center;
 }
-.banner{
+
+.banner {
     text-align: center;
     color: white;
     font-family: "Playwrite NZ", cursive;
 }
-.banner-image{
+
+.banner-image {
     width: 15rem;
     height: 15rem;
 }
 
-.movies-container{
-   
+.movies-container {
+
     text-align: center;
 }
 
 .movies-container input[type=text] {
-	appearance: none;
-	border: none;
-	outline: none;
-	border-bottom: .2em solid #d40f51;
-	background: transparent;
-	border-radius: .2em .2em 0 0;
-	padding: .4em;
-	color: #E91E63;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid #d40f51;
+    background: transparent;
+    border-radius: .2em .2em 0 0;
+    padding: .4em;
+    color: #E91E63;
     /* color: aliceblue; */
     width: 60%;
     font-size: 20px;
 }
 
+.list-container {
+
+    color: white;
+    font-family: "Playwrite NZ", cursive;
+    /* align-items: center; */
+    /* text-align: center; */
+    width: 100%;
+}
+
+.movie-list {
+    width: 60%;
+    list-style: none;
+    margin-left: 17.5%;
+
+
+
+}
+
+.movie-list li {
+    position: relative;
+    margin: 10px 0px;
+    height: 3rem;
+    text-align: center;
+    justify-self: center;
+    top: 10px;
+    border-radius: 20px;
+    background: rgb(18, 16, 16);
+    background: linear-gradient(90deg, rgba(18, 16, 16, 1) 5%, rgba(194, 97, 59, 1) 62%, rgba(96, 17, 97, 1) 96%);
+
+}
+
+.movie-item span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17.5px;
+    font-weight: 600;
+    color: white;
+}
+
+.button-align {
+
+    position: absolute;
+    right: 3%;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    margin: 0;
+
+}
+
+.movie-container {
+    margin-top: 30px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.movie-card {
+    display: flex;
+    border-radius: 30px;
+    padding-bottom: 30px;
+    margin-left: 4%;
+    margin-right: 4%;
+    position: relative;
+    background: rgb(85, 15, 85);
+    background: linear-gradient(90deg, rgba(85, 15, 85, 1) 0%, rgba(82, 19, 80, 1) 14%, rgba(66, 34, 96, 1) 40%, rgba(61, 30, 73, 1) 82%, rgba(49, 25, 57, 1) 90%, rgba(18, 16, 16, 1) 100%);
+}
+
+.movie-image {
+    /* padding: 20px; */
+    height: 20rem;
+    width: 20rem;
+    margin-top: 2.5%;
+    margin-left: 5%;
+    border-radius: 30px;
+    transition: all 0.5s ease-in-out;
+}
+
+.movie-image:hover {
+    transform: scale(1.1);
+    transition: 0.5s ease;
+}
+
+.movie-info {
+    width: 60%;
+    margin-left: 3rem;
+    margin-top: 2.5%;
+    color: white;
+}
+
+.movie-name {
+    font-size: 30px;
+   
+}
+
+.fav-icon-container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 7rem;
+    width: 6rem;
+    /* align-items: ; */
+    text-align: center;
+    font-size: 30px;
+    /* border: 2px dashed white; */
+    border-radius: 30px;
+    color: white;
+}
+
+.fav-icon-container button {
+    border: none;
+    outline: none;
+    margin-top: 20%;
+    background: transparent;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.fav-icon-container p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: -8%;
+
+}
+
+.movie-plot {
+    padding: 2rem;
+    margin-right: 4%;
+    margin-left: 4%;
+    margin-top: 2%;
+    border-radius: 30px;
+    background: rgb(15, 35, 97);
+    background: linear-gradient(90deg, rgba(15, 35, 97, 1) 0%, rgba(82, 19, 80, 1) 24%, rgba(61, 22, 97, 1) 52%, rgba(82, 24, 87, 1) 81%, rgba(14, 104, 125, 1) 94%);
+
+}
+
+.movie-plot h2 {
+    margin-left: 3%;
+    color: white;
+}
+
+.movie-plot p {
+    margin-left: 3%;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+
+}
+
+.back-button{
+    position: absolute;
+    top: 16%;
+    left: 0.5%;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    margin: 0;
+    color: white;
+    cursor: pointer;
+    
+}
