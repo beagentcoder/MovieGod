@@ -1,6 +1,6 @@
 const pageContent = document.getElementById("page-content"); // body content
-const apikey = "a0060c55"; /// Storing the API key in a variable for easy use
-
+// const apikey = "a0060c55"; /// Storing the API key in a variable for easy use
+const apikey="bffa573a";    //secondary key for API
 
 var favMovies = localStorage.getItem("favMovies") // retrieving data from localStorage if available otherwise initialize empty array
   ? JSON.parse(localStorage.getItem("favMovies"))
@@ -110,13 +110,15 @@ function addToFavorites(movie) {
 
   // Check if the movie is already in the favMovies array
   if (!favMovies.some((favMovie) => favMovie.imdbID === movie.imdbID)) {
-    alert("Movie Added Successfully :) <3");
+    // alert("Movie Added Successfully :) <3");
+    customAlert(` ${movie.Title} Added Successfully To Favorite :) <3`);
 
     favMovies.push(movie); //Adding Movie to favMovies array
     localStorage.setItem("favMovies", JSON.stringify(favMovies)); // Storing the movie in localStorage so that it is not deleted even after browser is closed
     console.log(`Added to favorites: ${movie.Title}`);
   } else {
-    alert("Movie Already Added !!!! :(");
+    // alert("Movie Already Added !!!! :(");
+    customAlert(`" ${movie.Title}" Already Added To Favorites`)
   }
 }
 
@@ -257,9 +259,23 @@ function loadFavoriteItms() {
 }
 
 function removeFavorite(movie){
-  alert(`${movie.Title} removed from Favorites`);
+  customAlert(`"${movie.Title}" removed from Favorites`)
+  // alert(`${movie.Title} removed from Favorites`);
   favMovies = favMovies.filter((favMovie) => favMovie.imdbID!== movie.imdbID);
   localStorage.setItem('favMovies', JSON.stringify(favMovies));
   showFavoritePage();
 
+}
+
+
+function customAlert(message) {
+  const alertBox = document.getElementById('customAlert');
+  const alertMessage = document.getElementById('alertMessage');
+  
+  alertMessage.textContent = message;
+  alertBox.classList.add('show');
+
+  setTimeout(() => {
+      alertBox.classList.remove('show');
+  }, 3000); // 3000 milliseconds = 3 seconds
 }
