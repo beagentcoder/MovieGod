@@ -1,11 +1,17 @@
-const pageContent = document.getElementById("page-content");
-const apikey ='a0060c55'
-const fav = document.getElementById("fav-click");
-var favMovies = []; // Declare the favMovies array to store favorite movies
+const pageContent = document.getElementById("page-content"); // body content
+const apikey = "a0060c55"; /// Storing the API key in a variable for easy use
 
-// fav.addEventListener('click',()=>{
-//     fav.innerHTML = ``
-// })
+
+var favMovies = localStorage.getItem("favMovies") // retrieving data from localStorage if available otherwise initialize empty array
+  ? JSON.parse(localStorage.getItem("favMovies"))
+  : [];
+
+const favoritePage = document.getElementById("fav-click"); // capturing the click event on favorite Tab
+favoritePage.addEventListener("click", () => {
+  pageContent.innerHTML = ``;
+  showFavoritePage();
+});
+
 document.addEventListener("DOMContentLoaded", displayHomePage);
 
 function displayHomePage() {
@@ -71,7 +77,7 @@ async function handleInput(event) {
 
         button.addEventListener("click", (e) => {
           e.stopPropagation();
-          consoleItemClicked(movie);
+          addToFavorites(movie);
         });
 
         movieList.appendChild(list);
@@ -83,14 +89,14 @@ async function handleInput(event) {
 
         // favBtn.addEventListener("click", (e)=> {
         //     e.stopPropagation();
-        //     consoleItemClicked(movieName, movieYear)
+        //     addToFavorites(movieName, movieYear)
 
         // });
 
         //   This approach is causing Errors Due to the special characters in the Movie Name ......BE SURE to Avoid it next Time
 
         list.addEventListener("click", () =>
-          displayMovieDetails(movieName, movieYear, imdbId)
+          displayMovieDetails(movieName, movieYear, imdbId, event)
         );
       });
     } catch (error) {
@@ -99,33 +105,33 @@ async function handleInput(event) {
   }
 }
 
-function consoleItemClicked(movie) {
+function addToFavorites(movie) {
   console.log(movie);
 
   // Check if the movie is already in the favMovies array
   if (!favMovies.some((favMovie) => favMovie.imdbID === movie.imdbID)) {
     alert("Movie Added Successfully :) <3");
+
     favMovies.push(movie); //Adding Movie to favMovies array
+    localStorage.setItem("favMovies", JSON.stringify(favMovies)); // Storing the movie in localStorage so that it is not deleted even after browser is closed
     console.log(`Added to favorites: ${movie.Title}`);
   } else {
-    alert("Movie already added !!!! :(");
+    alert("Movie Already Added !!!! :(");
   }
-
 }
 
-async function displayMovieDetails(name, year, imdbId) {
+async function displayMovieDetails(name, year, imdbId, inputEvent) {
   pageContent.innerHTML = ``;
-  console.log("in the displayMovieDetails function");
 
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?i=${imdbId}&t=${name}&y=${year}&apikey=${apikey}`   //Dynamically fetching data for displayMovieDetails
+      `http://www.omdbapi.com/?i=${imdbId}&t=${name}&y=${year}&apikey=${apikey}` //Dynamically fetching data for displayMovieDetails
     );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     const movie = await response.json();
-     
+
     const detailsEl = document.createElement("div");
     detailsEl.id = "movie-container";
     detailsEl.innerHTML = `
@@ -133,16 +139,15 @@ async function displayMovieDetails(name, year, imdbId) {
                     <img class="movie-image" src="${movie.Poster}"
                         alt="Movie image">
                     <div class="movie-info">
-                        <p class="movie-name playwrite-ng-modern-googlefont">${movie.Title}</p>
-                        <p class="movie-year playwrite-ng-modern-googlefont">${movie.Year}</p>
-                        <p class="movie-realeased-year playwrite-ng-modern-googlefont">Released Year: ${movie.Released}</p>
+                        <p class="display-movie-name playwrite-ng-modern-googlefont">${movie.Title}</p>
+                        <p class="display-movie-year playwrite-ng-modern-googlefont">${movie.Genre}</p>
+                        <p class="movie-realeased-year playwrite-ng-modern-googlefont">Released Date: ${movie.Released}</p>
                         <p class="movie-runtime playwrite-ng-modern-googlefont">Runtime: ${movie.Runtime}</p>
                         <p class="movie-language playwrite-ng-modern-googlefont">Language: ${movie.Language}</p>
                         <p class="movie-rating playwrite-ng-modern-googlefont">IMDB Rating: ${movie.imdbRating}</p>
                     </div>
-                    <div class="fav-icon-container">
-                        <button class=""><i class="fa-regular fa-star "></i></button>
-                        <p>Favourite</p>
+                    <div class="fav-icon-container" id="fav-btn">
+                        
                     </div>
                 </div>
                 <div class="movie-plot">
@@ -155,24 +160,97 @@ async function displayMovieDetails(name, year, imdbId) {
             
            `;
 
-        const backButton = document.createElement('button');
-        backButton.classList.add('back-button');
-        backButton.innerHTML= `<i class="fa-solid fa-arrow-left"></i>`
-        backButton.addEventListener('click',(e) =>{
-            e.stopPropagation();
-            displayHomePage();
-        } );
+    const button = document.createElement("div");
+    button.classList.add("fav-icon-container");
+    button.id = "fav-btn";
+    button.innerHTML = `<button ><i class="fa-regular fa-star "></i></button>
+                        <p>Favourite</p>`;
+    const backButton = document.createElement("button");
+    backButton.classList.add("back-button");
+    backButton.innerHTML = `<i class="fa-solid fa-arrow-left"></i>`;
 
-        pageContent.appendChild(backButton)
-        pageContent.appendChild(detailsEl);
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      addToFavorites(movie);
+    });
 
+    backButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      displayHomePage();
+      handleInput(inputEvent);
+    });
+    detailsEl.appendChild(button);
+    pageContent.appendChild(backButton);
+
+    pageContent.appendChild(detailsEl);
   } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-
+    console.error("There was a problem with the fetch operation:", error);
   }
-
-  
 }
 
+function showFavoritePage() {
+  const displayEle = document.createElement("div");
+  displayEle.id = "main-content";
+  displayEle.innerHTML = `<div class="banner">
+                <div class="image-container">
+                    <img class="banner-image" src="assests/banner2.png" alt="banner image">
+                </div>
+                <p class="banner-text">Favorite Movies</p>
+            </div>
+            <div class="list-container">
+                    <ul id="movie-list" class="movie-list">
 
-// displayMovieDetails("Spider-Man: No Way Home", 2021, "tt10872600")
+                    </ul>
+                </div>`;
+  pageContent.appendChild(displayEle);
+  loadFavoriteItms();
+}
+
+function loadFavoriteItms() {
+  const movieList = document.getElementById("movie-list");
+  movieList.innerHTML = ``; //clear existing list
+
+  if (favMovies.length > 0) {
+    favMovies.forEach((movie) => {
+      const list = document.createElement("li");
+      list.className = "movie-item";
+
+      const span = document.createElement("span");
+      span.className = "movie-name";
+      span.textContent = `${movie.Title} - ${movie.Year}`;
+
+      const button = document.createElement("button");
+      button.className = "button-align";
+      button.innerHTML = '<i class="fa-regular fa-star"></i>';
+
+      span.appendChild(button);
+      list.appendChild(span);
+
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        addToFavorites(movie);
+      });
+      list.addEventListener("click", () =>
+        displayMovieDetails(movie.Title, movie.Year, movie.imdbID, 0)
+      );
+      movieList.appendChild(list);
+    });
+  } else {
+    console.log("No Favorite Movies Found");
+    const list = document.createElement("li");
+    list.className = "movie-item";
+    list.innerHTML = `<span class=movie-name>No Favorite Movies Found</span>`;
+    movieList.appendChild(list);
+  }
+  const backButton = document.createElement("button");
+  backButton.classList.add("back-button");
+  backButton.innerHTML = `<i class="fa-solid fa-arrow-left"></i>`;
+
+  backButton.addEventListener("click", (e) => {
+    e.stopPropagation();
+    displayHomePage();
+    handleInput(0);
+  });
+
+  pageContent.appendChild(backButton);
+}

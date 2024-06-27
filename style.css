@@ -66,14 +66,13 @@ body::-webkit-scrollbar {
 .fav-tag {
     margin-right: 1rem;
     color: white;
+    padding: 5px;
+    background:rgb(67, 15, 15);
+    border-radius: 10px;
+    justify-content: center;
 
 }
 
-.fav-tag a {
-    text-decoration: none;
-    color: aliceblue;
-    font-weight: 500;
-}
 
 .fa-regular {
     color: white;
@@ -208,7 +207,7 @@ body::-webkit-scrollbar {
 
 .movie-image:hover {
     transform: scale(1.1);
-    transition: 0.5s ease;
+    transition: all 1s ease;
 }
 
 .movie-info {
@@ -218,15 +217,19 @@ body::-webkit-scrollbar {
     color: white;
 }
 
-.movie-name {
+.display-movie-name {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 30px;
-   
+    font-weight: bolder;
+    text-shadow: black 2px 4px;
+
 }
 
 .fav-icon-container {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 5%;
+    top: 56%;
+    /* bottom: 0; */
     height: 7rem;
     width: 6rem;
     /* align-items: ; */
@@ -269,6 +272,7 @@ body::-webkit-scrollbar {
 .movie-plot h2 {
     margin-left: 3%;
     color: white;
+    text-shadow: black 2px 4px;
 }
 
 .movie-plot p {
@@ -279,7 +283,7 @@ body::-webkit-scrollbar {
 
 }
 
-.back-button{
+.back-button {
     position: absolute;
     top: 16%;
     left: 0.5%;
@@ -289,5 +293,5 @@ body::-webkit-scrollbar {
     margin: 0;
     color: white;
     cursor: pointer;
-    
+
 }
