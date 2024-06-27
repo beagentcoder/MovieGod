@@ -39,7 +39,7 @@ function displayHomePage() {
   searchText.addEventListener("input", handleInput);
 }
 
-async function handleInput(event) {
+async function handleInput(event) {                                    //handling search input events from the user to show the results dynamically
   const userInput = event.target.value;
   const movieList = document.getElementById("movie-list");
 
@@ -105,7 +105,7 @@ async function handleInput(event) {
   }
 }
 
-function addToFavorites(movie) {
+function addToFavorites(movie) {                                    //function to add to favorites
   console.log(movie);
 
   // Check if the movie is already in the favMovies array
@@ -122,7 +122,7 @@ function addToFavorites(movie) {
   }
 }
 
-async function displayMovieDetails(name, year, imdbId, inputEvent) {
+async function displayMovieDetails(name, year, imdbId, inputEvent) {                 // Function to display the movie details dynamically
   pageContent.innerHTML = ``;
 
   try {
@@ -190,7 +190,7 @@ async function displayMovieDetails(name, year, imdbId, inputEvent) {
   }
 }
 
-function showFavoritePage() {
+function showFavoritePage() {                             //function to display the favorites
    pageContent.innerHTML=``
   const displayEle = document.createElement("div");
   displayEle.id = "main-content";
@@ -209,7 +209,7 @@ function showFavoritePage() {
   loadFavoriteItms();
 }
 
-function loadFavoriteItms() {
+function loadFavoriteItms() {                                       // function to load the favorites
   const movieList = document.getElementById("movie-list");
   movieList.innerHTML = ``; //clear existing list
 
@@ -258,7 +258,7 @@ function loadFavoriteItms() {
   pageContent.appendChild(backButton);
 }
 
-function removeFavorite(movie){
+function removeFavorite(movie){                                    ///Function to remove a movie from the favorites
   customAlert(`"${movie.Title}" removed from Favorites`)
   // alert(`${movie.Title} removed from Favorites`);
   favMovies = favMovies.filter((favMovie) => favMovie.imdbID!== movie.imdbID);
@@ -268,7 +268,7 @@ function removeFavorite(movie){
 }
 
 
-function customAlert(message) {
+function customAlert(message) {                                             //Custom ALert Box
   const alertBox = document.getElementById('customAlert');
   const alertMessage = document.getElementById('alertMessage');
   
@@ -277,5 +277,5 @@ function customAlert(message) {
 
   setTimeout(() => {
       alertBox.classList.remove('show');
-  }, 3000); // 3000 milliseconds = 3 seconds
+  }, 3000); 
 }
