@@ -189,6 +189,7 @@ async function displayMovieDetails(name, year, imdbId, inputEvent) {
 }
 
 function showFavoritePage() {
+   pageContent.innerHTML=``
   const displayEle = document.createElement("div");
   displayEle.id = "main-content";
   displayEle.innerHTML = `<div class="banner">
@@ -228,7 +229,7 @@ function loadFavoriteItms() {
 
       button.addEventListener("click", (e) => {
         e.stopPropagation();
-        addToFavorites(movie);
+        removeFavorite(movie);
       });
       list.addEventListener("click", () =>
         displayMovieDetails(movie.Title, movie.Year, movie.imdbID, 0)
@@ -253,4 +254,12 @@ function loadFavoriteItms() {
   });
 
   pageContent.appendChild(backButton);
+}
+
+function removeFavorite(movie){
+  alert(`${movie.Title} removed from Favorites`);
+  favMovies = favMovies.filter((favMovie) => favMovie.imdbID!== movie.imdbID);
+  localStorage.setItem('favMovies', JSON.stringify(favMovies));
+  showFavoritePage();
+
 }
